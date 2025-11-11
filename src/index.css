@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+:root {
+  /*font-family:  system-ui, Avenir, Helvetica, Arial, sans-serif;*/
+    font-family: "Caveat", sans-serif;
+  line-height: 1.5;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.slide-in {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #0f0f0f;
+    transform-origin: bottom;
+    /*z-index: 100;*/
+}
+
+
+.slide-in {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: #0f0f0f;
+    transform-origin: top;
+    /*z-index: 100;*/
+}
+
+
+.fc-toolbar-title, .fc-col-header-cell-cushion, .fc-daygrid-day-number {
+    color: #000;
+}
+
+.fc-view-harness, .fc-scrollgrid-sync-table, .fc-header-toolbar {
+    max-width: 1200px;
+}
+
+.fc-header-toolbar, .fc-view-harness {
+    margin: 0 auto;
+    width: 100%;
+}
+
+.fc-daygrid-day.fc-day-other {
+    background-color: #f3f4f6; /* Tailwind gray-100 */
+    opacity: 0.6;
+}
+
+/* Remove yellow background on today cell */
+.fc .fc-day-today,
+.fc-daygrid-day.fc-day-today {
+    background-color: transparent;
+}
+
+/* Dim all non-today days */
+.fc .fc-daygrid-day.fc-day-past{
+    background-color: #f3f4f6; /* Tailwind gray-100 */
+    pointer-events: none; /* disable click */
+    cursor: not-allowed;
+}
+.fc .fc-daygrid-day.fc-day-future {
+    pointer-events: auto;
+    cursor: not-allowed;
+}
+
+/* Keep today bright */
+.fc .fc-daygrid-day.fc-day-today {
+    background-color: #fff; /* normal white */
+    opacity: 1;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+/*@media (min-width: 600px) {*/
+/*    .total-res {*/
+/*        font-size: 10px;*/
+/*    }*/
+/*}*/
