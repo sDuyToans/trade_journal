@@ -1,16 +1,16 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 
-const baseURL = "http://localhost:8080/api/v1/news";
+const apiURL = import.meta.env.VITE_BASE_URL;
 
 export const newsApi = createApi({
     reducerPath: "newsApi",
     baseQuery: fetchBaseQuery({
-        baseUrl: baseURL,
+        baseUrl: apiURL,
         // credentials: "include"
     }),
     endpoints: (builder) => ({
         getForexNews: builder.query({
-            query: () => ""
+            query: () => "/news"
         })
     })
 })
