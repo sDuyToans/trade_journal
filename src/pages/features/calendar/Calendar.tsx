@@ -18,6 +18,7 @@ const Calendar = () => {
     const [alert, setAlert] = useState(false);
     const [alertMessage, setAlertMessage] = useState("");
     const [saveTrade] = useSaveTradeMutation();
+    const { isLoggedIn } = useAuth();
 
 
     const groupRecords = data?.reduce((acc, trade) => {
@@ -57,7 +58,6 @@ const Calendar = () => {
 
     const handleClickCell = (info) => {
         // Fix only allows user loggedIn to click on the cell
-        const { isLoggedIn } = useAuth();
         if (!isLoggedIn) {
             setAlertMessage("Please log in first");
             setAlert(true);
