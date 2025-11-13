@@ -18,7 +18,7 @@ const Calendar = () => {
     const [alert, setAlert] = useState(false);
     const [alertMessage, setAlertMessage] = useState("");
     const [saveTrade] = useSaveTradeMutation();
-    const { isLoggedIn } = useAuth();
+    const { isLoggedIn, data: userData } = useAuth();
 
 
     const groupRecords = data?.reduce((acc, trade) => {
@@ -33,10 +33,11 @@ const Calendar = () => {
         // save to that date record
         // now we need to implement db
         const tradeRequest = {
-            userId: 1,
+            // userId: 1,
             type: type,
             amount: amount,
-            note: note
+            note: note,
+            tradeDate: date
         }
 
         try {
