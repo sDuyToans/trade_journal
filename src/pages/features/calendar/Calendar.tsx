@@ -7,6 +7,7 @@ import CustomModal from "../../../component/common/CustomModal";
 import TradeInfo from "../../../component/TradeInfo";
 import {Alert, Snackbar} from "@mui/material";
 import {useGetTradesQuery, useSaveTradeMutation} from "../../../api/tradeApi";
+import {useAuth} from "../../../context/useAuth";
 
 const Calendar = () => {
     const {data} = useGetTradesQuery();
@@ -15,6 +16,7 @@ const Calendar = () => {
     const [openToast, setOpenToast] = useState(false);
     const [toastType, setToastType] = useState(null);
     const [alert, setAlert] = useState(false);
+    const [alertMessage, setAlertMessage] = useState("");
     const [saveTrade] = useSaveTradeMutation();
 
 
@@ -54,6 +56,19 @@ const Calendar = () => {
     }
 
     const handleClickCell = (info) => {
+        // Fix only allows user loggedIn to click on the cell
+        const { isLoggedIn } = useAuth();
+        if (!isLoggedIn) {
+            setAlertMessage("Please log in first");
+            setAlert(true);
+
+            // redirect after 1s
+            setTimeout(() => {
+                window.location.href = "/login";
+            }, 1000);
+            return;
+        }
+
         const clickedDate = info.dateStr;
 
         // if the click cell date is not today date
@@ -67,6 +82,7 @@ const Calendar = () => {
 
         if (!isToday) {
             // display alert box
+            setAlertMessage("Can only choose current date")
             setAlert(true);
         } else {
             setOpenModel(true);
@@ -93,7 +109,7 @@ const Calendar = () => {
                 variant="filled"
                 sx={{ width: '100%' }}
             >
-               Can only choose current date
+                {alertMessage}
             </Alert>
         </Snackbar>
         <Snackbar open={openToast} autoHideDuration={3000} onClose={() =>setOpenToast(false)}>
